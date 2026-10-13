@@ -57,9 +57,9 @@ amu compile --target wasm32-browser app     # build public/js/app.js
 `build.cljk` generates `public/index.html` from `kami.cad.ui/page`, but the two
 have drifted. Measured on `148d663`:
 
-- `public/index.html` carries **55** element ids; `ui.cljc` emits **28**, a strict
+- `public/index.html` carries **55** element ids; `ui.cljc` (since renamed `src/kami/cad/ui.cljk`) emits **28**, a strict
   subset.
-- **24** of the 27 missing ids are looked up by `app.cljs` with
+- **24** of the 27 missing ids are looked up by `app.cljs` (since renamed `src/kami/cad/app.cljk`) with
   `getElementById`; **18** of those are passed straight to `.addEventListener`
   (`extrude-solid`, `apply-boolean`, `save-project`, `load-project`,
   `duplicate-section`, `delete-section`, `sketch-height`, `toggle-feature`, …).
@@ -74,5 +74,5 @@ Fetching <https://kotoba-lang.github.io/kami-app-cad/> on 2026-09-05 returned th
 same 55 ids as the committed `public/index.html`, byte-for-byte in that set.
 
 Reconcile by porting the extrude/Boolean/feature-tree/persistence/measurement
-sections into `ui.cljc` and regenerating, rather than by hand-editing
+sections into `ui.cljk` and regenerating, rather than by hand-editing
 `public/index.html` again.
